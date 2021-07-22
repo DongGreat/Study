@@ -23,5 +23,6 @@ print("means of scores: ", score_means)
 for student_idx in range(n_student):
     math_scores[student_idx] -= score_means[0]
     english_scores[student_idx] -= score_means[1]
+    
 print("Math scores after mean subtraction: ", math_scores)
 print("English scores after mean subtraction: ", english_scores)

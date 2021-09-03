@@ -1,0 +1,5 @@
+run sql command line으로 오라클 접속
+-- 관리자 계정으로 접속
+SQL> conn system / manager
+SQL> create user scott identified by tiger;
+SQL> alter user scott identified by tiger account unlock ;

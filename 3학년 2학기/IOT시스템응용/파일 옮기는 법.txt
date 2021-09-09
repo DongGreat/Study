@@ -1,0 +1,3 @@
+cmd
+cd C:\Program Files\PuTTY
+pscp -r -P 33333 pi@58.148.65.53:/home/pi/20170660 C:\

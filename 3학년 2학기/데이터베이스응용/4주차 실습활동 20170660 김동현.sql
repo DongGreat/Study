@@ -22,10 +22,10 @@ where regexp_like(text, '^[A|E|I|O|U]');
 
 -- 4. 이름의 마지막 문자를 '*' 문자로 치환, 입사입의 '/'문자를 '-'문자로 치환하여 출력
 -- regexp_replace()함수 사용
-select regexp_replace(ename, substr(ename, -1), '*') 사원명, regexp_replace(hiredate, '/', '-') 입사일
+select regexp_replace(ename, '[A-Z]$', '*') 사원명, regexp_replace(hiredate, '/', '-') 입사일
 from emp;
 
 -- 5. 사원명, 봉급, 이름문자열내에 'S'문자갯수, 봉급값중 0의 갯수 출력
 --regexp_count()함수 사용
-select ename 사원명, sal 봉급, regexp_count(ename, 'S'), regexp_count(sal, '0')
+select ename 사원명, sal 봉급, regexp_count(ename, 'S') "문자 개수", regexp_count(sal, '0') "0의 개수"
 from emp;

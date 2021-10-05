@@ -16,11 +16,9 @@ def count_substr2(str, A, B):
         if str[i] == 'A':
             count += 1
         elif str[i] == 'B':
-            print(1)
             sum += count
     return sum
 
 A = "ADBAAEDBABB"
 print(count_substr(A, 'A', 'B'))
 print(count_substr2(A, 'A', 'B'))
-

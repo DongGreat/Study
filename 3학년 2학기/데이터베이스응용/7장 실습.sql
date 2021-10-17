@@ -1,5 +1,5 @@
 -- 'smith' 사원의 봉급순위 검색
-select ename, rank() over(order by ename desc)
+select ename, sal, rank() over(order by sal desc)
 from emp;
 
 -- sal 안에서 2000이라는 값의 순위
@@ -75,12 +75,12 @@ from emp e cross join dept d;
 
 -- 사원명, 소속부서명 검색
 -- 등가(equit) 조인
-select ename, dname
+select ename, dname, emp.deptno, dept.deptno
 from emp, dept
 where emp.deptno = dept.deptno;
 
 -- ANSI 표준 표기법
-select ename, dname
+select ename, dname, e.deptno, d.deptno
 from emp e inner join dept d
 on e.deptno = d.deptno;
 --
@@ -108,7 +108,8 @@ from emp e, emp m
 where e.mgr = m.empno and m.ename='KING';
 
 select e.ename 사원명, m.ename 관리자명
-from emp e join emp m on e.mgr = m.empno
+from emp e join emp m
+on e.mgr = m.empno
 where m.ename='KING';
 
 -- 외부조인
@@ -124,12 +125,14 @@ where emp.deptno(+) = dept.deptno;
 left    right
 -- outer join: left / right / full
 select ename, dname
-from emp e right outer join dept d on e.deptno = d.deptno;
+from emp e right outer join dept d
+on e.deptno = d.deptno;
 
 -- 관리자명이 'KING'인 사람들의 이름, 직급 (관리자가 없는 사원명도 출력되도록)
 select e.ename 사원명, m.ename 관리자명, e.job
 from emp e, emp m
 where e.mgr = m.empno(+);
+-- where e.mgr = m.empno(+) and m.ename = KING';
 
 select e.ename 사원명, m.ename 관리자명, e.job
 from emp e left outer join emp m on e.mgr = m.empno;

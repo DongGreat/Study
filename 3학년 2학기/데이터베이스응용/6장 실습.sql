@@ -68,7 +68,7 @@ order by deptno;
 -- lag(): 이전 행의 값 출력
 -- lead(): 다음 행의 값 출력
 
-select ename, hiredate, lag(sal, 1, 0) over (order by hiredate),
+select ename, hiredate, lag(sal, 2, 0) over (order by hiredate),
                         lead(sal, 2, 0) over (order by hiredate)
 from emp;
 
@@ -92,4 +92,5 @@ select deptno, sum(sal) 부서별봉급총액, sum(sum(sal)) over() 봉급총액,
                round(sum(sal) / sum(sum(sal)) over(), 3) "2",
                round(ratio_to_report(sum(sal)) over(), 3) "3"
 from emp
-group by deptno;
+group by deptno
+order by deptno;

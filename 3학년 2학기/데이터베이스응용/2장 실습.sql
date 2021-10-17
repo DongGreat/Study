@@ -76,8 +76,8 @@ where lower(job) = 'manager' and deptno = 10;
 select ename, job
 from emp
 -- where lower(job) = 'manager' or lower(job) = 'salesman';
--- where lower(job) in ('manager', 'salesman');
-where lower(job) not in ('manager', 'salesman');
+where lower(job) in ('manager', 'salesman');
+-- where lower(job) not in ('manager', 'salesman');
 
 -- smith 사원의 직급 검색
 select job
@@ -87,7 +87,7 @@ where lower(ename) = 'smith';
 -- 이름 중에 'S' 문자를 포함하고 있는 사원들의 직급
 select job, ename
 from emp
-where ename like 'S____'; -- S로 시작하고 4글자
+where ename like '%S____'; -- S로 시작하고 4글자
 -- where ename like '%S%';
 -- where ename like 'S%'; S로 시작
 -- where ename like '%S'; S로 끝
@@ -113,7 +113,7 @@ where deptno = &부서번호;
 select ename, hiredate
 from emp
 -- order by hiredate asc 오름차순
-order by hiredate desc;
+order by hiredate;
 
 -- 사원명, 봉급, 봉급*12(연봉) 검색, 연봉을 기준으로 내림차순으로 정렬 출력
 select ename, sal, sal*12 연봉

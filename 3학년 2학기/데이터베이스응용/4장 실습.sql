@@ -45,7 +45,7 @@ drop table reg;
 
 -- 테이블 생성 명령어
 CREATE TABLE reg
-( text varchar2(10));
+(text varchar2(10));
 
 INSERT INTO reg VALUES('ABC123');
 INSERT INTO reg VALUES('XYZ123');
@@ -73,7 +73,7 @@ where regexp_like(text, '[A-Z]');
 
 -- 'a' 문자를 포함하고 있는 행 검색
 select text from reg
-where regexp_like(text, 'a|x');
+where regexp_like(text, 'a');
 
 -- 대/소문자를 포함하는 행 검색
 select text from reg
@@ -129,7 +129,7 @@ select regexp_replace('127.0.0.1', '\.', '/'),
         regexp_replace('127.0.0.1', '\.', '/', 1, 1)
 from dual;
 
-select regexp_replace('aaa    bbbb', '( ){2,}', '')
+select regexp_replace('aaa    bb bb', '( ){2,}', '')
 from dual;
 
 -- 특정 문자열 형태를 다른 형태로 변환

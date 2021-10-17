@@ -32,7 +32,7 @@ select lpad('dhkim', 10, '*'), rpad('dhkim', 10, '#')
 from dual;
 
 -- ltrim('문자열' 또는 '컬럼', '제거할 문자')
-select ltrim('      dhkim      d', ' '), rtrim('      dhkim      d', ' ')
+select ltrim('      dhkim      d', ' '), rtrim('      dhkim      ', ' ')
 from dual;
 
 -- replace('문자열' 또는 컬럼, '문자1', '문자2')
@@ -53,7 +53,7 @@ from dual;
 select 10+2, 10-2, 10*2, 10/2
 from dual;
 
-select mod(10, 2) 나머지, ceil(123.456) 가장가까운큰정수, floor(123.456) 가장가까운작은정수
+select mod(11, 2) 나머지, ceil(123.456) 가장가까운큰정수, floor(123.456) 가장가까운작은정수
 from dual;
 
 select power(2, 8) -- 2의 8승
@@ -92,7 +92,8 @@ from dual;
 
 -- to_char(날짜 -> 문자)
 -- yyyy/year/yy, mm/month, day(요일), dd/ddth, hh/hh24, mi, ss
-select sysdate, to_char(sysdate, 'yyyy'), to_char(sysdate, 'mm'), to_char(sysdate, 'dd')
+select sysdate, to_char(sysdate, 'yyyy'), to_char(sysdate, 'mm'), to_char(sysdate, 'dd'),
+                to_char(sysdate, 'day'), to_char(sysdate, 'ddth'), to_char(sysdate, 'mi')
 from dual;
 
 select ename, to_char(hiredate, 'yyyy'), to_char(hiredate, 'mm'), to_char(hiredate, 'day')

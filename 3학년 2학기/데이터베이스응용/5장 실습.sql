@@ -1,6 +1,6 @@
--- 그룹함수(집단함수): count, sum, max, min, avg, stddev, variance
+-- 그룹함수(집단함수): count, sum, max, min, avg, stddev 표준편차, variance 분산
 -- 사원수, 평균봉급, 최대봉급
-select count(ename), count(comm), count(*)
+select count(ename), round(avg(sal)), max(sal)
 from emp;
 
 select round(avg(sal)), sum(sal), max(sal), min(sal), round(stddev(sal)), round(variance(sal))
@@ -103,7 +103,7 @@ from emp
 order by deptno;
 
 -- listagg(): 데이터를 가로로 출력, group by()절 필수
-select deptno 부서번호, listagg(ename, ',') within group (order by hiredate) 사원명
+select deptno 부서번호, listagg(ename, ', ') within group (order by hiredate) 사원명
 from emp
 group by deptno;
 

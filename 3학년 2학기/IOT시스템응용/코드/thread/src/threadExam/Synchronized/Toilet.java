@@ -13,5 +13,11 @@ public class Toilet {
 				System.out.println("≤Ù¿∏¿¿");
 			}
 		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

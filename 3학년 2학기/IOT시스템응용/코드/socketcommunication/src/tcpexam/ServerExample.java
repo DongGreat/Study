@@ -10,7 +10,11 @@ public class ServerExample {
 	public static void main(String[] args) {
 		ServerSocket serverSocket = null;
 		try {
-			serverSocket = new ServerSocket(5001);
+			// serverSocket = new ServerSocket(5001);
+			
+			serverSocket = new ServerSocket();
+			InetSocketAddress ipep = new InetSocketAddress(5001);
+			serverSocket.bind(ipep);
 			
 			while(true) {
 				System.out.println("[연결 기다림]");

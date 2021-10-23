@@ -1,3 +1,3 @@
-BUFFER_SIZE = 10
+import numpy as np
 
-print((5+1) % BUFFER_SIZE)
+A = np.array([[0, 1], [2,3]])

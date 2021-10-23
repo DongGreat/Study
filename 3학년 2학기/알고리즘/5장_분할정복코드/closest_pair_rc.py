@@ -1,8 +1,10 @@
 import math				    # math 모듈 포함. 제곱근(sqrt) 함수 사용을 위해
+import random
+import time
+import matplotlib.pyplot as pyplot
+
 def distance(p1, p2):		# Euclidean 거리 계산 함수
     return math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
-
-
 
 def closest_pair(p):
     n = len(p)              			# 점의 전체 개수
@@ -14,7 +16,6 @@ def closest_pair(p):
                 mindist = dist
     return mindist
   
-
 def strip_closest(P, d): 
     n = len(P)                  # 리스트내의 점의 수
     d_min = d
@@ -24,13 +25,12 @@ def strip_closest(P, d):
         j = i + 1
         # P[i].y와 P[j].y의 차이가 d_min 이내일 때 까지만 처리
         while j < n and (P[j][1] - P[i][1]) < d_min: 
-            dij = dist(P[i], P[j]) 
+            dij = distance(P[i], P[j]) 
             if dij < d_min :
                d_min = dij
             j += 1
     return d_min                # d_min 반환
-
-  
+ 
 def closest_pair_dist(P, n): 
     if n <= 3:			            # 점이 3개 이하이면, brute force로 바로 계산
         return closest_pair(P)  	# 억지기법 알고리즘(알고리즘 3.4) 
@@ -50,8 +50,23 @@ def closest_pair_dist(P, n):
     ds = strip_closest(Pm, d)	# Pm내에서 d보다 작은 최근접쌍 거리 찾기
     return min(d, ds)
 
+a = [] # x축 (좌표의 개수)
+b = [] # y축 (처리 시간)
 
+for i in range(1, 11):
+    n = random.randrange(10000*i, 10100*i)
+    a.append(n)
+    p = [0 for i in range(n)]
 
-p = [(2, 3), (12, 30), (40, 50), (5, 1), (12, 10), (3, 4)]
-p.sort(key = lambda point: point[0])    # 전처리: 점들을 x순으로 정렬
-print("가장 가까운 두 점의 거리", closest_pair_dist(p, len(p))) 
+    for j in range(n):
+        p[j] = (random.randrange(1, 1000000), random.randrange(1, 1000000))
+
+    p.sort(key = lambda point: point[0])    # 전처리: 점들을 x순으로 정렬
+    starttime = time.time()
+    print("가장 가까운 두 점의 거리", closest_pair_dist(p, len(p)))
+    endtime = time.time()
+    print("좌표의 개수 = %d, 처리 시간 = %f\n" % (n, (endtime - starttime)))
+    b.append(endtime - starttime)
+
+pyplot.plot(a, b)
+pyplot.show()

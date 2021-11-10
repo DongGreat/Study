@@ -1,0 +1,277 @@
+package com.dong.ultrasonic_client;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class MainActivity extends AppCompatActivity {
+    Socket socket;
+    OutputStream os;
+    InputStream is;
+    BufferedReader in;
+    PrintWriter out;
+
+    ConnectThread thread;
+
+    Button btnConnect, btnOn, btnOff, btnDisconnect;
+    EditText edServerIP;
+    TextView tvMessage;
+
+    Handler handler = new Handler();
+
+    Timer timer;
+    boolean threadStop;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        tvMessage = (TextView) findViewById(R.id.tvMessage);
+        edServerIP = (EditText) findViewById(R.id.edServerIP);
+        btnConnect = (Button) findViewById(R.id.btnConnect);
+        btnDisconnect = (Button) findViewById(R.id.btnDisconnect);
+        btnOn = (Button) findViewById(R.id.btnOn);
+        btnOff = (Button) findViewById(R.id.btnOff);
+
+        btnConnect.setEnabled(true);
+        btnOn.setEnabled(false);
+        btnOff.setEnabled(false);
+        btnDisconnect.setEnabled(false);
+
+        btnConnect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String addr = edServerIP.getText().toString().trim();
+
+                thread = new ConnectThread(addr);
+                threadStop = false;
+                thread.start();
+
+                btnConnect.setEnabled(false);
+                btnDisconnect.setEnabled(true);
+                btnOn.setEnabled(true);
+                btnOff.setEnabled(true);
+            }
+        });
+
+        btnDisconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thread.setStop();
+
+                tvMessage.setText("거리 : ");
+                btnConnect.setEnabled(true);
+                btnDisconnect.setEnabled(false);
+                btnOn.setEnabled(false);
+                btnOff.setEnabled(false);
+            }
+        });
+
+        btnOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnConnect.setEnabled(false);
+                btnDisconnect.setEnabled(true);
+                btnOn.setEnabled(false);
+                btnOff.setEnabled(true);
+
+                new Thread() {
+                    public void run() {
+                        timer = new Timer();
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                out.print("on");
+                                out.flush();
+                            }
+                        }, 1000, 1000);
+                    }
+                }.start();
+            }
+        });
+
+        btnOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnConnect.setEnabled(false);
+                btnDisconnect.setEnabled(true);
+                btnOn.setEnabled(true);
+                btnOff.setEnabled(false);
+
+                new Thread() {
+                    public void run() {
+                        timer.cancel();
+                        out.println("off");
+                        out.flush();
+                    }
+                }.start();
+            }
+        });
+    }
+
+    // 소켓 연결할 스레드 정의
+    class ConnectThread extends Thread {
+        String hostname;
+
+        public ConnectThread(String addr) {
+            hostname = addr;
+        }
+
+        public void run() {
+            try {
+                int port = 9999;
+
+                socket = new Socket(hostname, port);
+                os = socket.getOutputStream();
+                is = socket.getInputStream();
+                in = new BufferedReader(new InputStreamReader(is));
+                out = new PrintWriter(os);
+
+                readServer();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        public void readServer() {
+            try {
+                while (!threadStop) {
+                    String msg1 = in.readLine();
+
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            tvMessage.setText("거리: " + msg1 + "cm");
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void setStop() {
+            if (socket.isConnected()) {
+                try {
+                    timer.cancel();
+                    threadStop = true;
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="버튼을 누르면 소켓 연결됩니다 (20170660 김동현)"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edServerIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="연결할 소켓 서버 IP"
+        android:inputType="textPersonName"
+        android:text="192.168.219.109"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="서버 연결하기"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnOn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="거리 센싱 시작"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnOff"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="거리 센싱 끝"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:hint="거리: "
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnDisconnect"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="서버 연결 종료"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>

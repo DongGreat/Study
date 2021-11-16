@@ -1,3 +1,1 @@
-import numpy as np
-
-A = np.array([[0, 1], [2,3]])
+print(16385//1024, 16385%1024)

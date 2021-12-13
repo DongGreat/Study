@@ -1,0 +1,10 @@
+diff a/3학년 2학기/IOT시스템응용/기말/IOT 기말 정리 최종 최종.docx b/3학년 2학기/IOT시스템응용/기말/IOT 기말 정리 최종 최종.docx	(rejected hunks)
+@@ -166,7 +166,7 @@
+ thread = new ConnectThread(addr);
+ thread.start();
+ 
+-서버로부터 받은 메시지
++서버로 보내고 서버로부터 받은 메시지
+ msg = input02.getText().toString().trim();
+ new Thread() {
+ 	public void run() {

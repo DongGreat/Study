@@ -23,8 +23,7 @@ from emp e, emp m, dept
 where e.mgr = m.empno and e.deptno = dept.deptno and e.job = 'SALESMAN';
 
 select e.ename 사원명, m.ename 관리자명, dname 소속부서명
-from emp e join emp m on e.mgr = m.empno
-            join dept on e.deptno = dept.deptno
+from emp e join emp m on e.mgr = m.empno join dept on e.deptno = dept.deptno
 where e.job = 'SALESMAN';
 
 -- 외부조인

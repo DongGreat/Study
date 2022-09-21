@@ -1,0 +1,44 @@
+좋은 디자인의 중요한 요소 두 가지
+발견가능성
+아 보면 당겨야겠다
+이해
+아 당기면 문이 열리는구나
+
+Discoverability: Is it possible to even figure out what actions are possible and where and how to perform them?
+Understanding: What does it all mean? How is the product supposed to be used? What do all the different controls
+and settings mean?
+
+Human-Centered Design
+인간 중심 디자인
+
+Fundamental Principles of Interaction
+
+AFFORDANCES
+행동유도성
+
+signifier
+디자인 자체로는 affordances를 제공하지 못하면 signifier
+
+꼭 글자만 signifier가 되는 것이 아닌 물체나 디자인도 signifier이 될 수 있다
+
+하게 하는 것은 affordance 하지 않게 하는 것은 anti-affordance
+
+
+Nuclear power plant accident at Three Mile Island ==> Human centered design
+
+Good Design
+Discoverability + Understanding
+
+Interaction의 원리
+(1) Affordance / Anti-affordance
+행동유도성
+(2) Signifier
+기표
+(3) Constraint
+물리적 제약
+(4) Mapping
+매핑
+(5) Feedback
+반응
+(6) Conceptual model
+컨셉 모델과 맞는 디자인

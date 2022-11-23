@@ -17,7 +17,6 @@ public:
     //Book& operator-=(int price);
     friend Book operator+=(Book& book, int price);
     friend Book operator-=(Book& book, int price);
-
 };
 
 //Book& Book::operator+=(int price) {

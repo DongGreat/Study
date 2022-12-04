@@ -1,0 +1,3 @@
+﻿  9-10.cpp
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-10\9-10.cpp(127): warning C4715: 'GraphicEditor::del': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  9-10.vcxproj -> C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\x64\Debug\9-10.exe

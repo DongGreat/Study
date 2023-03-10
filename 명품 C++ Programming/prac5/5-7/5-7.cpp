@@ -11,21 +11,6 @@ public:
     bool pop(int& n);
 };
 
-int main()
-{
-    MyIntStack a;
-    for (int i = 0; i < 11; i++) {
-        if (a.push(i)) cout << i << ' ';
-        else cout << endl << i + 1 << " 번째 stack full" << endl;
-    }
-    int n;
-    for (int i = 0; i < 11; i++) {
-        if (a.pop(n)) cout << n << ' ';
-        else cout << endl << i + 1 << " 번째 stack empty";
-    }
-    cout << endl;
-}
-
 MyIntStack::MyIntStack()
 {
 	memset(p, 0, sizeof(p));
@@ -52,4 +37,19 @@ bool MyIntStack::pop(int& n)
 		n = p[tos--];
 		return true;
 	}
+}
+
+int main()
+{
+    MyIntStack a;
+    for (int i = 0; i < 11; i++) {
+        if (a.push(i)) cout << i << ' ';
+        else cout << endl << i + 1 << " 번째 stack full" << endl;
+    }
+    int n;
+    for (int i = 0; i < 11; i++) {
+        if (a.pop(n)) cout << n << ' ';
+        else cout << endl << i + 1 << " 번째 stack empty";
+    }
+    cout << endl;
 }

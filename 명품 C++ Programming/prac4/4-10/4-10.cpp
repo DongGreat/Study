@@ -22,16 +22,6 @@ public:
     ~Family();
 };
 
-int main()
-{
-    Family* simpson = new Family("Simpson", 3);
-    simpson->setName(0, "Mr. Simpson");
-    simpson->setName(1, "Mrs. Simpson");
-    simpson->setName(2, "Bart Simpson");
-    simpson->show();
-    delete simpson;
-}
-
 Family::Family(string name, int size)
 {
     this->familyName = name;
@@ -56,4 +46,14 @@ void Family::show()
 Family::~Family()
 {
     delete[] p;
+}
+
+int main()
+{
+    Family* simpson = new Family("Simpson", 3);
+    simpson->setName(0, "Mr. Simpson");
+    simpson->setName(1, "Mrs. Simpson");
+    simpson->setName(2, "Bart Simpson");
+    simpson->show();
+    delete simpson;
 }

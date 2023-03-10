@@ -9,10 +9,8 @@ int main()
     cin.getline(words, 100, '\n');
 
     int count = 0;
-    for (int i = 0; i < 100; i++)
-    {
-        if (words[i] == 'x')
-        {
+    for (int i = 0; i < 100; i++) {
+        if (words[i] == 'x') {
             count++;
         }
     }

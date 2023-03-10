@@ -4,24 +4,24 @@
 #include <ctime>
 using namespace std;
 
-class GameObject {
+class GameObject { // 추상 클래스
 protected:
-    int distance;
-    int x, y;
+    int distance; // 한 번 이동 거리
+    int x, y; // 현재 위치
 public:
-    GameObject(int startX, int startY, int distance) {
+    GameObject(int startX, int startY, int distance) { // 초기 위치와 이동거리 설정
         this->x = startX; this->y = startY;
         this->distance = distance;
     }
-    virtual ~GameObject() {};
+    virtual ~GameObject() {}; // 가상 소멸자
 
-    virtual void move() = 0;
-    virtual char getShape() = 0;
+    virtual void move() = 0; // 이동한 후 새로운 위치로 x, y 변경
+    virtual char getShape() = 0; // 객체의 모양을 나타내는 문자 리턴
 
     int getX() { return x; }
     int getY() { return y; }
     bool collide(GameObject* p) {
-        if (this->x == p->getX() && this->y == p->getY())
+        if (this->x == p->getX() && this->y == p->getY()) // 이 객체가 객체 p와 충돌했으면 true 리턴
             return true;
         else
             return false;
@@ -68,18 +68,26 @@ public:
         case 0:
             if (y >= 2)
                 y -= distance;
+            else if (y == 1)
+                y--;
             break;
         case 1:
             if (x <= 7)
                 x += distance;
+            else if (x == 8)
+                x++;
             break;
         case 2:
             if (x >= 2)
                 x -= distance;
+            else if (x == 1)
+                x--;
             break;
         case 3:
             if (y <= 17)
                 y += distance;
+            else if (y == 18)
+                y++;
             break;
         }
     }

@@ -4,21 +4,22 @@ using namespace std;
 
 Exp::Exp() {
 	base = 1;
-	jisu = 1;
+	exp = 1;
 }
 
 Exp::Exp(int base) {
 	this->base = base;
+	exp = 1;
 }
 
-Exp::Exp(int base, int jisu) {
+Exp::Exp(int base, int exp) {
 	this->base = base;
-	this->jisu = jisu;
+	this->exp = exp;
 }
 
 int Exp::getValue() {
-	int result = base;
-	for (int i = 1; i < jisu; i++) {
+	int result = 1;
+	for (int i = 0; i < exp; i++) {
 		result *= base;
 	}
 	return result;
@@ -29,7 +30,7 @@ int Exp::getBase() {
 }
 
 int Exp::getExp() {
-	return jisu;
+	return exp;
 }
 
 bool Exp::equals(Exp b) {

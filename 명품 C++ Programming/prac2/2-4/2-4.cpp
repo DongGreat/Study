@@ -8,11 +8,9 @@ int main()
     double arr[5];
     double max = 0;
 
-    for (int i = 0; i < 5; i++)
-    {
+    for (int i = 0; i < 5; i++) {
         cin >> arr[i];
-        if (arr[i] > max)
-        {
+        if (arr[i] > max) {
             max = arr[i];
         }
     }

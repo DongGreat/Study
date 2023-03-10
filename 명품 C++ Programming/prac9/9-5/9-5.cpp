@@ -12,7 +12,7 @@ public:
 class ORGate : public AbstractGate {
 public:
     bool operation() {
-        if (x || y) return true;
+        if (x || y) return true; // 둘 중 하나라도 참일 경우 1
         else return false;
     }
 };
@@ -20,7 +20,7 @@ public:
 class XORGate : public AbstractGate {
 public:
     bool operation() {
-        if (x != y) return true;
+        if (x != y) return true; // 두 값이 다를 경우 1
         else return false;
     }
 };
@@ -28,7 +28,7 @@ public:
 class ANDGate : public AbstractGate {
 public:
     bool operation() {
-        if (x && y) return true;
+        if (x && y) return true; // 둘 다 참일 경우 1
         else return false;
     }
 };

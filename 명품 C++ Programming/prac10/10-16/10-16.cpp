@@ -54,7 +54,17 @@ int main()
         else if (n == 2) {
             cout << "삭제하고자 하는 도형의 인덱스 >> ";
             cin >> index;
-            v.erase(v.begin() + index);
+            if (index < 0 || index >= v.size()) {
+                cout << "잘못된 인덱스입니다." << endl;
+                continue;
+            }
+            vector<Shape*>::iterator it;
+            it = v.begin();
+            for (int i = 0; i < index; i++)
+                it++;
+            Shape* p = *it;
+            it = v.erase(it);
+            delete p;
         }
         else if (n == 3) {
             for (int i = 0; i < v.size(); i++) {

@@ -1,5 +1,5 @@
 #pragma once
-class Tower
+class Tower1
 {
 	int height;
 public:

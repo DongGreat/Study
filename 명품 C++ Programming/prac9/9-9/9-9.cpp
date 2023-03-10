@@ -62,7 +62,7 @@ public:
         else if (availableCount < pages) {
             cout << "용지가 부족하여 프린트할 수 없습니다." << endl;
         }
-        else if (availableToner < pages) {
+        else if (availableToner < 1) {
             cout << "토너가 부족하여 프린트할 수 없습니다." << endl;
         }
     }
@@ -104,4 +104,7 @@ int main()
         }
         cout << endl;
     }
+
+    for (int i = 0; i < 2; i++)
+        delete printer[i];
 }

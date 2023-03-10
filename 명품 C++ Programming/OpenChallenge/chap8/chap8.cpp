@@ -40,7 +40,6 @@ public:
 };
 
 class CompactDisc : public Product {
-protected:
     string singer, songTitle;
 public:
     CompactDisc(int id, string description, string producer, int price, string singer, string songTitle)
@@ -82,11 +81,10 @@ int main()
     Product* product[100];
     string description, producer, author, bookTitle, singer, songTitle, language;
     int price, isbn;
-    int id = 0, n = 0;
+    int id = 0, n;
     while (id < 100) {
         cout << "상품 추가(1), 모든 상품 조회(2), 끝내기(3) ? ";
         cin >> n;
-        cin.ignore();
         if (n == 1) {
             cout << "상품 종류 책(1), 음악CD(2), 회화책(3) ? ";
             cin >> n;
@@ -156,4 +154,5 @@ int main()
             break;
         }
     }
+    delete[] product;
 }

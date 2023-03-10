@@ -1,17 +1,17 @@
 ﻿#include <iostream>
 using namespace std;
 
-int add(int* a, int size) {
-    int sum = 0;
-    for (int i = 0; i < size; i++) sum += a[i];
-        return sum;
-}
-
-int add(int* a, int size, int* b) {
-    int sum = 0;
-    for (int i = 0; i < size; i++) sum += a[i] + b[i];
-    return sum;
-}
+//int add(int* a, int size) {
+//    int sum = 0;
+//    for (int i = 0; i < size; i++) sum += a[i];
+//        return sum;
+//}
+//
+//int add(int* a, int size, int* b) {
+//    int sum = 0;
+//    for (int i = 0; i < size; i++) sum += a[i] + b[i];
+//    return sum;
+//}
 
 int add(int* a, int size, int* b = NULL) {
     int sum = 0;

@@ -9,13 +9,6 @@ public:
     int get();
 };
 
-int main()
-{
-    Accumulator acc(10);
-    acc.add(5).add(6).add(7);
-    cout << acc.get();
-}
-
 Accumulator::Accumulator(int value)
 {
     this->value = value;
@@ -30,4 +23,11 @@ Accumulator& Accumulator::add(int n)
 int Accumulator::get()
 {
     return value;
+}
+
+int main()
+{
+    Accumulator acc(10);
+    acc.add(5).add(6).add(7);
+    cout << acc.get();
 }

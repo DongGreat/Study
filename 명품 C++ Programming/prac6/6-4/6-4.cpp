@@ -19,16 +19,19 @@ MyVector::MyVector(int n, int val) {
 void MyVector::show()
 {
     cout << "size = " << size << endl << "val = ";
-    for (int i = 0; i < size; i++) {
-        cout << mem[i] << ' ';
+    for (int i = 0; i < size - 1; i++) {
+        cout << mem[i] << ", ";
     }
+    cout << mem[size - 1];
     cout << endl;
 }
 
 int main()
 {
-    MyVector a, b(10, 50);
+    MyVector a, b(10), c(10, 20);
     a.show();
     cout << endl;
     b.show();
+    cout << endl;
+    c.show();
 }

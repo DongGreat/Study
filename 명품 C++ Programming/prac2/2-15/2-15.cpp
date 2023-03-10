@@ -4,33 +4,35 @@ using namespace std;
 
 int main()
 {
-    string c;
+    char s[100];
+    char* op;
+    char* context = NULL; // context에는 분리된 후 남은 문자열이 들어간다
+    int num1, num2;
 
     while (true) {
         cout << "? ";
-        getline(cin, c);
+        cin.getline(s, 100);
 
-        int num1 = atoi(c.substr(0, c.find(" ")).c_str());
-        int num2 = atoi(c.substr(c.find(" ") + 3, c.back()).c_str());
+        num1 = atoi(strtok_s(s, " ", &context));
+        op = strtok_s(NULL, " ", &context); // 첫번째 인자에 NULL이 들어가면 먼저 자른 문자열의 다음부터 탐색
+        num2 = atoi(strtok_s(NULL, " ", &context));
 
-        char op = c.at(c.find(" ") + 1);
-
-        switch (op)
+        switch (*op)
         {
         case '+':
-            cout << c << " = " << num1 + num2 << endl;
+            cout << num1 << " " << *op << " " << num2 << " = " << num1 + num2 << endl;
             break;
         case '-':
-            cout << c << " = " << num1 - num2 << endl;
+            cout << s << " = " << num1 - num2 << endl;
             break;
         case '*':
-            cout << c << " = " << num1 * num2 << endl;
+            cout << s << " = " << num1 * num2 << endl;
             break;
         case '/':
-            cout << c << " = " << num1 / num2 << endl;
+            cout << s << " = " << num1 / num2 << endl;
             break;
         case '%':
-            cout << c << " = " << num1 % num2 << endl;
+            cout << s << " = " << num1 % num2 << endl;
             break;
         default:
             break;

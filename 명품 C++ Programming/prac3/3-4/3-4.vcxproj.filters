@@ -18,13 +18,5 @@
     <ClCompile Include="3-4.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CoffeeMachine.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CoffeeMachine.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

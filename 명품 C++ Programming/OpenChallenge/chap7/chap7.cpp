@@ -12,12 +12,12 @@ public:
 };
 
 Histogram& Histogram::operator<<(string s) {
-    text += s;
+    this->text += s;
     return *this;
 }
 
 Histogram& Histogram::operator<<(char c) {
-    text += c;
+    this->text += c;
     return *this;
 }
 
@@ -25,7 +25,7 @@ void Histogram::operator!() {
     cout << text << endl;
 
     int count = 0;
-    int cnt[26] = { 0, };
+    int cnt[26] = { 0 };
     for (int i = 0; i < text.length(); i++) {
         if (isalpha(text[i])) {
             count++;
@@ -38,7 +38,6 @@ void Histogram::operator!() {
         }
     }
     cout << endl << "총 알파벳 수 " << count << endl;
-
 
     for (int i = 0; i < 26; i++) {
         cout << (char)(i + 'a') << ':';

@@ -14,10 +14,17 @@ int main()
     while (true) {
         cout << ">>";
         getline(cin, s);
-        if (!s.compare("exit")) break;
+        if (s.compare("exit") == 0) break;
 
         idx = rand() % s.length();
-        alpha = rand() % 26 + 'a';
+
+        int n = rand();
+        if (n % 2 == 0) {
+            alpha = rand() % 26 + 'a';
+        }
+        else {
+            alpha = rand() % 26 + 'A';
+        }
 
         s.replace(idx, 1, alpha);
         cout << s << endl;

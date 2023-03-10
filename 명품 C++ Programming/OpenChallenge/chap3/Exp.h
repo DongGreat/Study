@@ -3,11 +3,11 @@ class Exp
 {
 private:
 	int base;
-	int jisu;
+	int exp;
 public:
 	Exp();
 	Exp(int base);
-	Exp(int base, int jisu);
+	Exp(int base, int exp);
 	int getValue();
 	int getBase();
 	int getExp();

@@ -128,12 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="4-14.cpp" />
-    <ClCompile Include="GamblingGame.cpp" />
-    <ClCompile Include="Player.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GamblingGame.h" />
-    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

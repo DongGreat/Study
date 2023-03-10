@@ -12,4 +12,5 @@ int main()
         sum += p[i];
     }
     cout << "평균 " << sum / n;
+    delete[] p;
 }

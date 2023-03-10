@@ -1,2 +1,3 @@
 ﻿  chap8.cpp
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\OpenChallenge\chap8\chap8.cpp(157,21): warning C4154: 배열 식을 삭제했습니다. 포인터로 변환이 제공됩니다.
   chap8.vcxproj -> C:\Users\sinzz\Desktop\Study\명품 C++ Programming\OpenChallenge\x64\Debug\chap8.exe

@@ -5,17 +5,17 @@ using namespace std;
 
 class Book {
     int year;
-    string name, writer;
+    string title, author;
 public:
-    Book(int year = 0, string name = "", string writer = "") {
+    Book(int year = 0, string title = "", string author = "") {
         this->year = year;
-        this->name = name;
-        this->writer = writer;
+        this->title = title;
+        this->author = author;
     }
-    string getWriter() { return writer; }
+    string getAuthor() { return author; }
     int getYear() { return year; }
     void show() {
-        cout << year << "년도, " << name << ", " << writer << endl;
+        cout << year << "년도, " << title << ", " << author << endl;
     }
 };
 
@@ -24,7 +24,7 @@ int main()
     vector<Book> v;
     cout << "입고할 책을 입력하세요. 년도에 -1을 입력하면 입고를 종료합니다." << endl;
     int year, count = 0;
-    string name, writer;
+    string title, author;
     while (true) {
         cout << "년도>>";
         cin >> year;
@@ -34,17 +34,17 @@ int main()
             break;
         }
         cout << "책이름>>";
-        getline(cin, name);
+        getline(cin, title);
         cout << "저자>>";
-        getline(cin, writer);
-        v.push_back(Book(year, name, writer));
+        getline(cin, author);
+        v.push_back(Book(year, title, author));
         count++;
     }
 
     cout << "검색하고자 하는 저자 이름을 입력하세요>>";
-    getline(cin, writer);
+    getline(cin, author);
     for (int i = 0; i < v.size(); i++) {
-        if (writer == v.at(i).getWriter()) {
+        if (author == v.at(i).getAuthor()) {
             v.at(i).show();
         }
     }

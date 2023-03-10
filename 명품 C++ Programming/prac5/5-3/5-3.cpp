@@ -2,7 +2,10 @@
 #include <string>
 using namespace std;
 
-void combine(string a, string b, string& c);
+void combine(string a, string b, string& c)
+{
+    c = a + " " + b;
+}
 
 int main()
 {
@@ -10,9 +13,4 @@ int main()
     string text3;
     combine(text1, text2, text3);
     cout << text3;
-}
-
-void combine(string a, string b, string& c)
-{
-    c = a + " " + b;
 }

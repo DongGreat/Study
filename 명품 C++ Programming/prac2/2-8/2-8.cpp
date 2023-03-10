@@ -9,12 +9,10 @@ int main()
     int maxlen = 0;
     char name[100];
     char longname[100];
-    for (int i = 1; i <= 5; i++)
-    {
+    for (int i = 1; i <= 5; i++) {
         cin.getline(name, 100, ';');
         cout << i << " : " << name << endl;
-        if (maxlen < strlen(name))
-        {
+        if (maxlen < strlen(name)) {
             maxlen = strlen(name);
             strcpy_s(longname, name);
         }

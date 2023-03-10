@@ -1,23 +1,21 @@
 ﻿#include <iostream>
-#include <string>
+#include <cstring>
 using namespace std;
 
 int main()
 {
     cout << "새 암호를 입력하세요>>";
-    string a;
-    getline(cin, a);
+    char a[100];
+    cin >> a;
 
     cout << "새 암호를 다시 한 번 입력하세요>>";
-    string b;
-    getline(cin, b);
+    char b[100];
+    cin >> b;
 
-    if (a.compare(b) == 0)
-    {
+    if (strcmp(a, b) == 0) {
         cout << "같습니다";
     }
-    else
-    {
+    else {
         cout << "같지 않습니다";
     }
 }

@@ -10,56 +10,51 @@ public:
 };
 
 class IntStack : public AbstractStack {
-    int* n;
+    int* mem;
+    int capacity;
     int top;
 public:
-    IntStack() {
-        this->n = new int[10];
+    IntStack(int capacity) {
+        this->capacity = capacity;
+        this->mem = new int[capacity];
         this->top = 0;
     }
-    ~IntStack() { delete[] n; }
+    ~IntStack() { delete[] mem; }
     bool push(int n) {
-        if (size() < 10) { // 0 1 2 3 4
-            this->n[top++] = n;
+        if (top < capacity) {
+            this->mem[top++] = n;
             return true;
         }
         else {
-            cout << "Full" << endl;
+            cout << "stack is full" << endl;
             return false;
         }
     }
     bool pop(int& n) {
-        if (size() > 0) {
-            n = this->n[--top];
+        if (top > 0) {
+            n = this->mem[--top];
             return true;
         }
         else {
-            cout << "Empty" << endl;
+            cout << "stack is empty" << endl;
             return false;
         }
     }
-    int size() { return top; }
-    void show() {
-        for (int i = 0; i < size(); i++) {
-            cout << this->n[i];
-        }
-    }
+    int size() { return capacity; }
 };
 
 int main()
 {
-    IntStack intStack;
+    IntStack intStack(5);
 
-    intStack.push(1);
-    intStack.push(2);
-    intStack.push(3);
-    intStack.push(4);
-    intStack.push(5);
-    intStack.push(6);
+    for (int i = 0; i < 6; i++) {
+        if (intStack.push(i + 1))
+            cout << "push " << i + 1 << endl;
+    }
 
     int n;
-    intStack.pop(n);
-    cout << n << endl;
-
-    intStack.show();
+    for (int i = 0; i < 6; i++) {
+        if (intStack.pop(n))
+            cout << "pop " << n << endl;
+    }
 }

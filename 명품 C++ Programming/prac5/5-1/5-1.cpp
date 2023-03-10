@@ -1,7 +1,26 @@
 ﻿#include <iostream>
 using namespace std;
 
-#include "Circle.h"
+class Circle
+{
+	int radius;
+public:
+	Circle(int r) { this->radius = r; }
+	int getRadius();
+	void swap(Circle& c1, Circle& c2);
+};
+
+int Circle::getRadius()
+{
+	return radius;
+}
+
+void Circle::swap(Circle& a, Circle& b)
+{
+	Circle temp = a;
+	a = b;
+	b = temp;
+}
 
 int main()
 {

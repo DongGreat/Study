@@ -3,16 +3,24 @@ using namespace std;
 
 template <class T>
 T* remove(T src[], int sizeSrc, T minus[], int sizeMinus, int& retSize) {
-    T* tmp = new T[sizeSrc + sizeMinus];
-    int j;
+    retSize = sizeSrc;
     for (int i = 0; i < sizeSrc; i++) {
-        for (j = 0; j < sizeMinus; j++) {
+        for (int j = 0; j < sizeMinus; j++) {
             if (src[i] == minus[j]) {
+                src[i] = NULL;
+                retSize--;
                 break;
             }
         }
-        if (j == sizeMinus) {
-            tmp[retSize++] = src[i];
+    }
+    if (retSize == 0) return 0;
+    
+    T* tmp = new T[retSize];
+    int n = 0;
+    for (int i = 0; i < sizeSrc; i++) {
+        if (src[i] != NULL) {
+            tmp[n] = src[i];
+            n++;
         }
     }
     return tmp;

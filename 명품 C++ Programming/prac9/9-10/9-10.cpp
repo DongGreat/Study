@@ -25,18 +25,17 @@ public:
 };
 
 class Shape {
-protected:
     Shape* next;
+protected:
+    virtual void draw() = 0;
 public:
     Shape() { next = NULL; }
-    virtual void draw() = 0;
-    virtual ~Shape() {}
+    void paint() { draw(); }
+    Shape* getNext() { return next; } // 없으면 NULL
     Shape* add(Shape* p) {
         this->next = p;
         return p;
     }
-    Shape* getNext() { return next; }
-    void setNext(Shape* p) { this->next = p->next; }
 };
 
 class Line : public Shape {
@@ -50,80 +49,87 @@ public:
 };
 
 class Rectangle : public Shape {
-    void draw() { cout << "Rectangle" << endl; }
 public:
+    void draw() { cout << "Rectangle" << endl; }
 };
 
 class GraphicEditor {
     Shape* pStart;
     Shape* pLast;
-    int count;
 public:
     GraphicEditor() {
         pStart = pLast = NULL;
-        count = 0;
     }
-    void insertItem(int n) {
-        Shape* p = NULL;
-        switch (n) {
+    ~GraphicEditor() {
+        Shape* p = pStart;
+        while (p != pStart) {
+            Shape* q = p->getNext(); // 다음 도형 주소 기억
+            delete p; // 현재 도형 객체 소멸
+            p = q; // 다음 도형의 주소를 p에 저장
+        }
+    }
+    void insertShape(int n) {
+        switch (n) { // 1은 Line, 2는 Circle, 3은 Rectangle
         case 1:
-            if (count == 0) {
+            if (pStart == NULL) { // 처음 생성
                 pStart = new Line();
                 pLast = pStart;
             }
-            else {
-                pLast = pLast->add(new Line());
+            else { // 이미 있으면
+                pLast = pLast->add(new Line()); // 마지막에 객체 추가
             }
-            count++;
             break;
         case 2:
-            if (count == 0) {
+            if (pStart == NULL) {
                 pStart = new Circle();
                 pLast = pStart;
             }
             else {
                 pLast = pLast->add(new Circle());
             }
-            count++;
             break;
         case 3:
-            if (count == 0) {
+            if (pStart == NULL) {
                 pStart = new Rectangle();
                 pLast = pStart;
             }
             else {
                 pLast = pLast->add(new Rectangle());
             }
-            count++;
             break;
         default:
             break;
         }
     }
-    bool del(int n) {
-        int k = 0;
-        Shape* target_node = pStart;
-        Shape* priv_node = NULL;
-        if (n == 0) {
+    bool deleteIndex(int index) { // 인덱스 위치를 지우고 이전 노드를 다음 노드와 연결
+        int i = 0;
+        Shape* p = pStart;
+        Shape* pre = pStart;
+        if (index == 0) { // 지우는 게 0번 인덱스면 pStart를 다음 노드에 연결하고 현재 위치의 객체 삭제
             pStart = pStart->getNext();
-            delete target_node;
+            delete p;
         }
         else {
-            while ((target_node != NULL) && (k < n)) {
-                priv_node = target_node;
-                target_node = target_node->getNext();
-                k++;
+            while (p != NULL && i < index) {
+                pre = p;
+                p = p->getNext();
+                i++;
             }
-            if (target_node == NULL) {
-                cout << "없는 노드입니다.\n";
+            if (p == NULL) {
+                cout << "없는 노드입니다." << endl;
                 return false;
             }
+            else if (p->getNext() == NULL) { // 이거 추가하니까 마지막 인덱스 삭제하고 삽입 안 되는 문제 해결됨
+                pre->add(NULL);
+                pLast = pre;
+                delete p;
+            }
             else {
-                priv_node->setNext(target_node);
-                delete target_node;
+                pre->add(p->getNext()); // 이전 노드를 현재 노드의 다음 노드로 연결
+                delete p; // 현재 노드의 객체 삭제
+                // 마지막 인덱스를 삭제한 후 다시 삽입할 때 삽입이 되지 않는 문제 발생
             }
         }
-        count--;
     }
     void show() {
         Shape* p = pStart;
@@ -134,30 +140,30 @@ public:
         else {
             while (p != NULL) {
                 cout << i << ": ";
-                p->draw();
+                p->paint();
                 p = p->getNext();
                 i++;
             }
         }
     }
     int run() {
-        cout << "그래픽 에디터입니다.\n";
+        cout << "그래픽 에디터입니다." << endl;
         while (true) {
             int num;
             num = UI::show_menu();
             switch (num) {
             case 1: {
                 num = UI::insert_shape();
-                insertItem(num);
+                insertShape(num);
                 break;
             }
             case 2: {
                 if (pStart == NULL) {
-                    cout << "List Empty\n";
+                    cout << "List Empty" << endl;
                     break;
                 }
                 num = UI::delete_index();
-                del(num);
+                deleteIndex(num);
                 break;
             }
             case 3: {
@@ -168,7 +174,7 @@ public:
                 exit(0);
             }
             default:
-                cout << "메뉴를 잘못 선택하셨습니다.\n";
+                cout << "메뉴를 잘못 선택하셨습니다." << endl;
             }
         }
     }

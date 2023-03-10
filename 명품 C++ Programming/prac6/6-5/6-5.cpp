@@ -7,6 +7,20 @@ public:
     static void doubleToInt(double source[], int dest[], int size);
 };
 
+void ArrayUtility::intToDouble(int source[], double dest[], int size)
+{
+    for (int i = 0; i < size; i++) {
+        dest[i] = (double)source[i];
+    }
+}
+
+void ArrayUtility::doubleToInt(double source[], int dest[], int size)
+{
+    for (int i = 0; i < size; i++) {
+        dest[i] = (int)source[i];
+    }
+}
+
 int main()
 {
     int x[] = { 1, 2, 3, 4, 5 };
@@ -20,18 +34,4 @@ int main()
     ArrayUtility::doubleToInt(z, x, 5);
     for (int i = 0; i < 5; i++) cout << x[i] << ' ';
     cout << endl;
-}
-
-void ArrayUtility::intToDouble(int source[], double dest[], int size)
-{
-    for (int i = 0; i < size; i++) {
-        dest[i] = (double)source[i];
-    }
-}
-
-void ArrayUtility::doubleToInt(double source[], int dest[], int size)
-{
-    for (int i = 0; i < size; i++) {
-        dest[i] = (int)source[i];
-    }
 }

@@ -2,7 +2,7 @@
 using namespace std;
 
 template <class T>
-T search(int a, T data[], int n) {
+T search(T a, T data[], int n) {
     for (int i = 0; i < n; i++) {
         if (data[i] == a) return true;
     }

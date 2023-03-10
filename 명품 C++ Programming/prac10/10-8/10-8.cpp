@@ -15,7 +15,7 @@ public:
     int getRadius() { return radius; }
     bool operator > (Comparable& op2) {
         Circle* c;
-        c = (Circle*)&op2;
+        c = (Circle*)&op2; // 다운 캐스팅
         if (this->radius > c->getRadius()) return true;
         else return false;
     }

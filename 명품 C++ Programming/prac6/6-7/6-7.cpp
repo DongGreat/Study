@@ -11,11 +11,27 @@ public:
     static double nextDouble();
 };
 
+int Random::nextInt(int min, int max)
+{
+    return rand() % (max - min + 1) + min;
+}
+
+char Random::nextAlphabet()
+{
+    if (rand() % 2 == 0) return rand() % 26 + 'a';
+    else return rand() % 26 + 'A';
+}
+
+double Random::nextDouble()
+{
+    return (double)rand() / RAND_MAX;
+}
+
 int main()
 {
     Random::seed();
 
-    int min = 51, max = 100;
+    int min = 50, max = 100;
     cout << min << "에서 " << max << "까지 랜덤한 정수 10개를 출력합니다" << endl;;
     for (int i = 0; i < 10; i++) {
         cout << Random::nextInt(min, max) << ' ';
@@ -32,20 +48,5 @@ int main()
     for (int i = 0; i < 10; i++) {
         cout << Random::nextDouble() << ' ';
     }
-}
-
-int Random::nextInt(int min, int max)
-{
-    return rand() % (max - min + 1) + min;
-}
-
-char Random::nextAlphabet()
-{
-    if (rand() % 2 == 0) return rand() % 26 + 'a';
-    else return rand() % 26 + 'A';
-}
-
-double Random::nextDouble()
-{
-    return (double)rand() / RAND_MAX;
+    cout << endl;
 }

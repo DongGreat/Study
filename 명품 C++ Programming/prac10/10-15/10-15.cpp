@@ -35,18 +35,26 @@ int main()
             cin >> name;
             vector<Circle*>::iterator it;
             it = v.begin();
-            for (int i = 0; i < v.size(); i++) {
-                if (v[i]->getName() == name) {
-                    it = v.erase(it);
+            while (it != v.end()) {
+                Circle* p = *it;
+                if (p->getName() == name) {
+                    it = v.erase(it); // it이 가리키는 원소 삭제 후 다음 객체 가리킴
+                    delete p;
                 }
                 else {
                     it++;
                 }
             }
+            //for (int i = 0; i < v.size(); i++) {
+            //    if (v[i]->getName() == name)
+            //        v.erase(v.begin() + i);
+            //}
         }
         else if (n == 3) {
-            for (int i = 0; i < v.size(); i++) {
-                cout << v[i]->getName() << endl;
+            vector<Circle*>::iterator it;
+            for (it=v.begin(); it != v.end(); it++) {
+                Circle* p = *it;
+                cout << p->getName() << endl;
             }
             cout << endl;
         }

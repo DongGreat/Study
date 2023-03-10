@@ -21,12 +21,6 @@ public:
     void run();
 };
 
-int main()
-{
-    CoffeeVendingMachine machine;
-    machine.run();
-}
-
 void Container::fill()
 {
     size = 10;
@@ -119,4 +113,10 @@ void CoffeeVendingMachine::run()
             break;
         }
     }
+}
+
+int main()
+{
+    CoffeeVendingMachine machine;
+    machine.run();
 }

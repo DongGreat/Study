@@ -128,10 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3-9.cpp" />
-    <ClCompile Include="Oval.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Oval.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,7 +8,9 @@ using namespace std;
 //    string name;
 //public:
 //    Person() { this->id = 1; this->name = "Grace"; this->weight = 20.5; }
-//    Person(int id, string name) { this->id = id; this->name = name; this->weight = 20.5; }
+//    Person(int id, string name) {
+//        this->id = id; this->name = name; this->weight = 20.5;
+//    }
 //    Person(int id, string name, double weight) { this->id = id; this->name = name; this->weight = weight; }
 //    void show() { cout << id << ' ' << weight << ' ' << name << endl; }
 //};
@@ -18,7 +20,9 @@ class Person {
     double weight;
     string name;
 public:
-    Person(int id = 1, string name = "Grace", double weight = 20.5) { this->id = id; this->name = name; this->weight = weight; }
+    Person(int id = 1, string name = "Grace", double weight = 20.5) {
+        this->id = id; this->name = name; this->weight = weight;
+    }
     void show() { cout << id << ' ' << weight << ' ' << name << endl; }
 };
 

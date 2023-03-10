@@ -21,4 +21,7 @@ int main()
     Buffer& temp = append(buf, "Guys");
     temp.print();
     buf.print();
+    temp.add("OO"); // temp는 Buffer 객체 buf에 대한 참조라 temp를 바꾸면 buf도 바뀜
+    buf.print();
+    temp.print();
 }

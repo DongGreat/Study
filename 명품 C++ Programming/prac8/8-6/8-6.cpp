@@ -16,18 +16,30 @@ protected:
 };
 
 class MyStack : public BaseArray{
-    int index;
+    int top;
 public:
-    MyStack(int size = 100) : BaseArray(size) { index = 0; }
-    void push(int n) { put(index++, n); }
-    int pop() { return get(--index); }
+    MyStack(int size = 100) : BaseArray(size) { top = 0; }
+    void push(int n);
+    int pop();
     int capacity() { return getCapacity(); }
-    int length() { return index; }
+    int length() { return top; }
 };
+
+void MyStack::push(int n) {
+    if (top == capacity())
+        return;
+    put(top++, n);
+}
+
+int MyStack::pop() {
+    if (top == 0)
+        return -1;
+    return get(--top);
+}
 
 int main()
 {
-    MyStack mStack(100);
+    MyStack mStack(4);
     int n;
     cout << "스택에 삽입할 5개의 정수를 입력하라>> ";
     for (int i = 0; i < 5; i++) {

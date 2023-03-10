@@ -3,9 +3,9 @@ using namespace std;
 
 class Statistics {
     int* num;
-    int index;
+    int count;
 public:
-    Statistics() { num = new int[10]; index = 0; }
+    Statistics() { num = new int[10]; count = 0; }
     ~Statistics() { delete[] num; }
     bool operator!();
     void operator>>(int& avg);
@@ -14,25 +14,25 @@ public:
 };
 
 bool Statistics::operator!() {
-    if (index == 0) return true;
+    if (count == 0) return true;
     else return false;
 }
 
 void Statistics::operator>>(int& avg) {
     int sum = 0;
-    for (int i = 0; i < index; i++) {
+    for (int i = 0; i < count; i++) {
         sum += num[i];
     }
-    avg = sum / index;
+    avg = sum / count;
 }
 
 Statistics& Statistics::operator<<(int n) {
-    this->num[index++] = n;
+    this->num[count++] = n;
     return *this;
 }
 
 void Statistics::operator~() {
-    for (int i = 0; i < index; i++) {
+    for (int i = 0; i < count; i++) {
         cout << num[i] << ' ';
     }
     cout << endl;

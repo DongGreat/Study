@@ -61,7 +61,10 @@ public:
     string getTime() { return time; }
     void setTime(string time) { this->time = time; }
     void reservation(string name, int seat_num) {
-        seats[seat_num].reservation(name);
+        if (seats[seat_num].getName() == "---")
+            seats[seat_num].reservation(name);
+        else
+            cout << "이미 예약된 좌석입니다. 다른 좌석을 선택해 주세요." << endl;
     }
     void cancle(string name, int seat_num) {
         if (seats[seat_num].getName() == name) {
@@ -107,10 +110,10 @@ public:
                     schedules[0].reservation(name, seat_num);
                     break;
                 case 2:
-                    schedules[0].show();
+                    schedules[1].show();
                     seat_num = Console::InputSeatNum();
                     name = Console::InputName();
-                    schedules[0].reservation(name, seat_num);
+                    schedules[1].reservation(name, seat_num);
                     break;
                 case 3:
                     schedules[2].show();
@@ -160,6 +163,6 @@ public:
 
 int main()
 {
-    AirlineBook* airlinebook = new AirlineBook();
-    airlinebook->run();
+    AirlineBook airlinebook;
+    airlinebook.run();
 }

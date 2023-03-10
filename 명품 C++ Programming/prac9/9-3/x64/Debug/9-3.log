@@ -1,2 +1,5 @@
 ﻿  9-3.cpp
-  9-3.vcxproj -> C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\x64\Debug\9-3.exe
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-3\9-3.cpp(52,17): error C2247: 'LoopAdder::run'에 액세스할 수 없습니다. 이는 'ForLoopAdder'이(가) 'protected'을(를) 사용하여 'LoopAdder'에서 상속하기 때문입니다.
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-3\9-3.cpp(31): message : 'LoopAdder::run' 선언을 참조하십시오.
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-3\9-3.cpp(37): message : 'ForLoopAdder' 선언을 참조하십시오.
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-3\9-3.cpp(5): message : 'LoopAdder' 선언을 참조하십시오.

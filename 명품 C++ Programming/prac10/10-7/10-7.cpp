@@ -6,6 +6,7 @@ class Circle {
 public:
     Circle(int radius = 1) { this->radius = radius; }
     int getRadius() { return radius; }
+    //bool operator>(Circle& c);
 };
 
 template <class T>
@@ -28,3 +29,9 @@ int main()
     y = bigger(waffle, pizza);
     cout << "waffle과 pizza 중 큰 것의 반지름은 " << y.getRadius() << endl;
 }
+
+//bool Circle::operator>(Circle& c)
+//{
+//    if (this->radius > c.radius) return true;
+//    else return false;
+//}

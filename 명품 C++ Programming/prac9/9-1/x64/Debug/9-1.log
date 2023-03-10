@@ -1,2 +1,5 @@
 ﻿  9-1.cpp
-  9-1.vcxproj -> C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\x64\Debug\9-1.exe
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-1\9-1.cpp(33,12): error C2247: 'Converter::run'에 액세스할 수 없습니다. 이는 'WonToDollar'이(가) 'protected'을(를) 사용하여 'Converter'에서 상속하기 때문입니다.
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-1\9-1.cpp(13): message : 'Converter::run' 선언을 참조하십시오.
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-1\9-1.cpp(22): message : 'WonToDollar' 선언을 참조하십시오.
+C:\Users\sinzz\Desktop\Study\명품 C++ Programming\prac9\9-1\9-1.cpp(5): message : 'Converter' 선언을 참조하십시오.
